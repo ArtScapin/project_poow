@@ -2,10 +2,8 @@ package br.ufsm.csi.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
-public class ConectaDB {
+public class ConnectionDB {
     private static final String DRIVER = "org.postgresql.Driver";
     private static final String URL = "jdbc:postgresql://127.0.0.1:5432/project_poow";
     private static final String USER = "postgres";
