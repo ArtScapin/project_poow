@@ -23,6 +23,7 @@ public class WorkspaceDAO {
                 Workspace workspace = new Workspace();
                 workspace.setId(resultSet.getInt("id"));
                 workspace.setName(resultSet.getString("name"));
+                workspace.setUser(new UserDAO().getUser(resultSet.getInt("id_user")));
 
                 workspaces.add(workspace);
             }
@@ -31,6 +32,28 @@ public class WorkspaceDAO {
         }
 
         return workspaces;
+    }
+    public Workspace getWorkspace(int id, User user) {
+        try(Connection connection = new ConnectionDB().getConexao()) {
+            sql = "SELECT * FROM workspaces WHERE id_user = ? AND id = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setInt(2, id);
+            resultSet = preparedStatement.executeQuery();
+
+            while (this.resultSet.next()){
+                Workspace workspace = new Workspace();
+                workspace.setId(resultSet.getInt("id"));
+                workspace.setName(resultSet.getString("name"));
+                workspace.setUser(new UserDAO().getUser(resultSet.getInt("id_user")));
+
+                return workspace;
+            }
+        } catch (SQLException error) {
+            error.printStackTrace();
+        }
+
+        return null;
     }
 
     public boolean create(Workspace workspace) {

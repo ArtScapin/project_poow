@@ -54,4 +54,30 @@ class WorkspacesPage extends HttpServlet {
 
     }
 }
+@WebServlet("/list")
+class ListsPage extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = new UserService().getUser(req.getCookies());
+        System.out.println("ok");
+
+        if(user != null){
+            req.setAttribute("user", user);
+            Workspace workspace = new WorkspaceDAO().getWorkspace(Integer.parseInt(req.getParameter("workspace")), user);
+            req.setAttribute("workspace", workspace);
+            ArrayList<String> lists = new ArrayList<>();
+            lists.add("id: "+workspace.getId());
+            lists.add("name: "+workspace.getName());
+            lists.add("created_by: "+workspace.getUser().getName());
+
+            req.setAttribute("lists", lists);
+            RequestDispatcher dispatcher;
+            dispatcher = req.getRequestDispatcher("/WEB-INF/list.jsp");
+            dispatcher.forward(req, resp);
+        } else {
+            resp.sendRedirect("./");
+        }
+
+    }
+}
 

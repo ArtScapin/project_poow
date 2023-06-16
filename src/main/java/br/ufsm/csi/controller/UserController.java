@@ -25,7 +25,9 @@ class LoginUser extends HttpServlet {
 
         if (new UserService().authenticate(email, password)) {
             User user = new UserDAO().getUser(email);
-            resp.addCookie(new Cookie("user", user.getId()+""));
+            Cookie cookie = new Cookie("user", user.getId()+"");
+            cookie.setMaxAge(3600);
+            resp.addCookie(cookie);
             resp.sendRedirect("./workspaces");
         } else {
             resp.sendRedirect("./");

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard - Dark Theme</title>
+    <title>TODO List - Workspaces</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -80,12 +80,17 @@
         .modal-footer {
             border-top: none;
         }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
     </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Dashboard</a>
+        <span class="navbar-brand">TODO List</span>
         <div class="navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -99,12 +104,11 @@
 
 <div class="container">
     <div class="col-md-12">
-        <h2 class="text-center mt-4">Dashboard</h2>
-        <h4 style="display: inline-block;">My Workspaces:</h4>
         <button class="btn btn-primary add-workspace-button" data-bs-toggle="modal" data-bs-target="#workspaceModal"><i class="fas fa-plus"></i></button>
+        <h2 class="mt-4">My Workspaces</h2>
         <ul class="workspace-list">
             <c:forEach var="workspace" items="${workspaces}">
-                <li>Workspace ${workspace.name}</li>
+                <a href="list?workspace=${workspace.id}"><li>Workspace ${workspace.name}</li></a>
             </c:forEach>
         </ul>
     </div>
