@@ -3,6 +3,8 @@ package br.ufsm.csi.service;
 import br.ufsm.csi.dao.UserDAO;
 import br.ufsm.csi.model.User;
 
+import javax.servlet.http.Cookie;
+
 public class UserService {
     public boolean authenticate(String email, String password){
         User user = new UserDAO().getUser(email);
@@ -16,6 +18,15 @@ public class UserService {
     public boolean register(String name, String email, String password){
         User user = new User(name, email, password);
         return new UserDAO().create(user);
+    }
+
+    public User getUser(Cookie[] cookies){
+        for (Cookie cookie: cookies) {
+            if(cookie.getName().equals("user")){
+                return new UserDAO().getUser(Integer.parseInt(cookie.getValue()));
+            }
+        }
+        return null;
     }
 
 }

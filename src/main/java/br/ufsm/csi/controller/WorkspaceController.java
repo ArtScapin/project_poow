@@ -2,6 +2,7 @@ package br.ufsm.csi.controller;
 
 import br.ufsm.csi.dao.UserDAO;
 import br.ufsm.csi.model.User;
+import br.ufsm.csi.service.UserService;
 import br.ufsm.csi.service.WorkspaceService;
 
 import javax.servlet.RequestDispatcher;
@@ -13,19 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/register-workspace")
-public class WorkspaceController extends HttpServlet {
+class RegisterWorkspace extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String servletPath = req.getServletPath();
-
-        if("/register-workspace".equals(servletPath)) {
+        User user = new UserService().getUser(req.getCookies());
+        if(user != null){
             String name = req.getParameter("name");
-            String email = req.getParameter("email");
-            User user = new UserDAO().getUser(email);
-            System.out.println("email");
-            System.out.println("user"+ user);
             new WorkspaceService().register(name, user);
-            resp.sendRedirect("/");
+            resp.sendRedirect("./workspaces");
         }
+        resp.sendRedirect("./");
     }
 }
