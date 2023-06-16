@@ -65,13 +65,20 @@ class UpdateUser extends HttpServlet {
             String confirmPassword = req.getParameter("confirmPassword");
 
             if (password.equals(confirmPassword)) {
-                if(name != null)
-                    user.setName(name);
-                if(email != null)
-                    user.setEmail(email);
-                if(newPassword != null)
-                    user.setPassword(newPassword);
-                new UserService().update(user);
+                if(user.getPassword().equals(password)) {
+                    if (name != null) {
+                        user.setName(name);
+                    }
+                    if (newPassword != null) {
+                        user.setPassword(newPassword);
+                    }
+                    if (email != null) {
+                        if (new UserService().canUseMail(email)) {
+                            user.setEmail(email);
+                        }
+                    }
+                    new UserService().update(user);
+                }
             }
 
             resp.sendRedirect("./user");

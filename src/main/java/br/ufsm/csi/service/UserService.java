@@ -34,4 +34,12 @@ public class UserService {
         return null;
     }
 
+    public boolean canUseMail(String email){
+        User user = new UserDAO().getUser(email);
+        if(user != null){
+            return false;
+        }
+        return true;
+    }
+
 }
