@@ -99,7 +99,7 @@
                         <i class="fas fa-user-circle fa-lg"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="./user">Edit Profile</a></li>
                         <li><a class="dropdown-item" href="./logout-user">Logout</a></li>
                     </ul>
                 </li>

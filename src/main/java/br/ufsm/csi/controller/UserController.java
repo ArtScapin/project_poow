@@ -4,7 +4,6 @@ import br.ufsm.csi.dao.UserDAO;
 import br.ufsm.csi.model.User;
 import br.ufsm.csi.service.UserService;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -48,6 +47,34 @@ class RegisterUser extends HttpServlet {
             }
         }else{
             resp.sendRedirect("./register");
+        }
+    }
+}
+
+@WebServlet("/update-user")
+class UpdateUser extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        User user = new UserService().getUser(req.getCookies());
+
+        if(user != null) {
+            String name = req.getParameter("name");
+            String email = req.getParameter("email");
+            String newPassword = req.getParameter("newPassword");
+            String password = req.getParameter("password");
+            String confirmPassword = req.getParameter("confirmPassword");
+
+            if (password.equals(confirmPassword)) {
+                if(name != null)
+                    user.setName(name);
+                if(email != null)
+                    user.setEmail(email);
+                if(newPassword != null)
+                    user.setPassword(newPassword);
+                new UserService().update(user);
+            }
+
+            resp.sendRedirect("./user");
         }
     }
 }

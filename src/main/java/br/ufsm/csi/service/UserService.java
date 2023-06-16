@@ -21,6 +21,10 @@ public class UserService {
         return new UserDAO().create(user);
     }
 
+    public boolean update(User user){
+        return new UserDAO().update(user);
+    }
+
     public User getUser(Cookie[] cookies){
         for (Cookie cookie: cookies) {
             if(cookie.getName().equals("user")){

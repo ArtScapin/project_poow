@@ -35,6 +35,23 @@ class RegisterPage extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 }
+
+@WebServlet("/user")
+class UserPage extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = new UserService().getUser(req.getCookies());
+        if(user != null) {
+            req.setAttribute("user", user);
+            RequestDispatcher dispatcher;
+            dispatcher = req.getRequestDispatcher("/WEB-INF/user.jsp");
+            dispatcher.forward(req, resp);
+        } else {
+            resp.sendRedirect("./");
+        }
+    }
+}
+
 @WebServlet("/workspaces")
 class WorkspacesPage extends HttpServlet {
     @Override
@@ -73,7 +90,6 @@ class ListsPage extends HttpServlet {
         } else {
             resp.sendRedirect("./");
         }
-
     }
 }
 
