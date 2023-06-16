@@ -1,11 +1,19 @@
 package br.ufsm.csi.model;
 
-public class Lists {
+public class List {
     private int id;
     private String name;
     private  Workspace workspace;
 
-    public Lists(int id, String name, Workspace workspace) {
+    public List() {
+    }
+
+    public List(String name, Workspace workspace) {
+        this.name = name;
+        this.workspace = workspace;
+    }
+
+    public List(int id, String name, Workspace workspace) {
         this.id = id;
         this.name = name;
         this.workspace = workspace;

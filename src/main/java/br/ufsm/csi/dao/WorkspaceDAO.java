@@ -23,7 +23,7 @@ public class WorkspaceDAO {
                 Workspace workspace = new Workspace();
                 workspace.setId(resultSet.getInt("id"));
                 workspace.setName(resultSet.getString("name"));
-                workspace.setUser(new UserDAO().getUser(resultSet.getInt("id_user")));
+                workspace.setUser(user);
 
                 workspaces.add(workspace);
             }
@@ -45,7 +45,7 @@ public class WorkspaceDAO {
                 Workspace workspace = new Workspace();
                 workspace.setId(resultSet.getInt("id"));
                 workspace.setName(resultSet.getString("name"));
-                workspace.setUser(new UserDAO().getUser(resultSet.getInt("id_user")));
+                workspace.setUser(user);
 
                 return workspace;
             }

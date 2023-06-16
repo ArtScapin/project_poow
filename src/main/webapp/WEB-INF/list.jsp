@@ -80,6 +80,11 @@
       .modal-footer {
           border-top: none;
       }
+
+      a {
+          text-decoration: none;
+          color: white;
+      }
   </style>
 </head>
 <body>
@@ -104,7 +109,7 @@
     <h4 class="mt-4">My Lists</h4>
     <ul class="workspace-list">
       <c:forEach var="list" items="${lists}">
-        <li>${list}</li>
+        <a href="list?task=${list.id}"><li>List ${list.name}</li></a>
       </c:forEach>
     </ul>
   </div>
@@ -119,10 +124,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="post" action="register-workspace">
+        <form method="post" action="register-list">
           <div class="mb-3">
-            <input type="hidden" value="${user.email}" name="email" id="email">
-            <label for="name" class="form-label">Workspace Name:</label>
+            <input type="hidden" value="${workspace.id}" name="workspace" id="workspace">
+            <label for="name" class="form-label">List Name:</label>
             <input type="text" class="form-control" name="name" id="name">
           </div>
           <div class="modal-footer">

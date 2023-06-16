@@ -1,7 +1,9 @@
 package br.ufsm.csi.controller;
 
+import br.ufsm.csi.dao.ListDAO;
 import br.ufsm.csi.dao.UserDAO;
 import br.ufsm.csi.dao.WorkspaceDAO;
+import br.ufsm.csi.model.List;
 import br.ufsm.csi.model.User;
 import br.ufsm.csi.model.Workspace;
 import br.ufsm.csi.service.UserService;
@@ -65,11 +67,7 @@ class ListsPage extends HttpServlet {
             req.setAttribute("user", user);
             Workspace workspace = new WorkspaceDAO().getWorkspace(Integer.parseInt(req.getParameter("workspace")), user);
             req.setAttribute("workspace", workspace);
-            ArrayList<String> lists = new ArrayList<>();
-            lists.add("id: "+workspace.getId());
-            lists.add("name: "+workspace.getName());
-            lists.add("created_by: "+workspace.getUser().getName());
-
+            ArrayList<List> lists = new ListDAO().getLists(workspace);
             req.setAttribute("lists", lists);
             RequestDispatcher dispatcher;
             dispatcher = req.getRequestDispatcher("/WEB-INF/list.jsp");

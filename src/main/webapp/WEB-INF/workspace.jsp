@@ -125,7 +125,6 @@
             <div class="modal-body">
                 <form method="post" action="register-workspace">
                     <div class="mb-3">
-                        <input type="hidden" value="${user.email}" name="email" id="email">
                         <label for="name" class="form-label">Workspace Name:</label>
                         <input type="text" class="form-control" name="name" id="name">
                     </div>
