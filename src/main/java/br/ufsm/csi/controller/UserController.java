@@ -51,3 +51,14 @@ class RegisterUser extends HttpServlet {
         }
     }
 }
+
+@WebServlet("/logout-user")
+class LogoutUser extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Cookie cookie = new Cookie("user", null);
+        cookie.setMaxAge(1);
+        resp.addCookie(cookie);
+        resp.sendRedirect("./");
+    }
+}

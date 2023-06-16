@@ -93,9 +93,15 @@
         <span class="navbar-brand">TODO List</span>
         <div class="navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <span class="navbar-text">${user.name} </span>
-                    <i class="fas fa-user-circle fa-lg"></i>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="navbar-text">${user.name} </span>
+                        <i class="fas fa-user-circle fa-lg"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="./logout-user">Logout</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>

@@ -15,6 +15,7 @@ public class UserService {
         }
         return false;
     }
+
     public boolean register(String name, String email, String password){
         User user = new User(name, email, password);
         return new UserDAO().create(user);
