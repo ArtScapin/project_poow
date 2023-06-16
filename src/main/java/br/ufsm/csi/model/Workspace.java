@@ -5,6 +5,14 @@ public class Workspace {
     private String name;
     private User user;
 
+    public Workspace() {
+    }
+
+    public Workspace(String name, User user) {
+        this.name = name;
+        this.user = user;
+    }
+
     public Workspace(int id, String name, User user) {
         this.id = id;
         this.name = name;
