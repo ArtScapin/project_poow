@@ -100,11 +100,7 @@ public class UserDAO {
     }
     public boolean update(User user){
         try(Connection connection = new ConnectionDB().getConexao()) {
-            sql = """
-                    UPDATE users
-                    SET name = ?, email = ?, password = ?
-                    WHERE id = ?
-                    """;
+            sql = "UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
@@ -120,10 +116,7 @@ public class UserDAO {
     }
     public boolean delete(User user){
         try(Connection connection = new ConnectionDB().getConexao()) {
-            sql = """
-                    DELETE FROM users
-                    WHERE id = ?
-                        """;
+            sql = "DELETE FROM users WHERE id = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, user.getId());
             preparedStatement.execute();

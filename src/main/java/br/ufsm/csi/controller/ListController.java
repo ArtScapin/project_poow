@@ -5,9 +5,7 @@ import br.ufsm.csi.model.User;
 import br.ufsm.csi.model.Workspace;
 import br.ufsm.csi.service.ListService;
 import br.ufsm.csi.service.UserService;
-import br.ufsm.csi.service.WorkspaceService;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +15,7 @@ import java.io.IOException;
 @WebServlet("/register-list")
 class RegisterList extends HttpServlet {
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User user = new UserService().getUser(req.getCookies());
         if(user != null){
             String name = req.getParameter("name");

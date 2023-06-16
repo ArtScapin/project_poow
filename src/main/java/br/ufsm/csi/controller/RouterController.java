@@ -1,7 +1,6 @@
 package br.ufsm.csi.controller;
 
 import br.ufsm.csi.dao.ListDAO;
-import br.ufsm.csi.dao.UserDAO;
 import br.ufsm.csi.dao.WorkspaceDAO;
 import br.ufsm.csi.model.List;
 import br.ufsm.csi.model.User;
@@ -11,7 +10,6 @@ import br.ufsm.csi.service.UserService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
