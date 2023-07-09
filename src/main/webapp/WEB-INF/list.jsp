@@ -7,6 +7,7 @@
   <title>TODO List - Lists</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <style>
       body {
           background-color: #222;
@@ -111,7 +112,14 @@
 <div class="container">
   <div class="col-md-12">
     <button class="btn btn-primary add-list-button" data-bs-toggle="modal" data-bs-target="#listModal"><i class="fas fa-plus"></i></button>
-    <h2 class="mt-4">Workspace ${workspace.name}</h2>
+    <h2 class="mt-4">
+      <a href="./workspaces">
+        <span class="material-symbols-outlined">
+          arrow_back
+        </span>
+        Workspace ${workspace.name}
+      </a>
+    </h2>
     <h4 class="mt-4">My Lists</h4>
     <ul class="list-list">
       <c:forEach var="list" items="${lists}">

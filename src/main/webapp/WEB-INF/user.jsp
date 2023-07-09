@@ -7,6 +7,7 @@
   <title>TODO List - Workspaces</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <style>
       body {
           background-color: #222;
@@ -49,13 +50,11 @@
           transform: translateY(-50%);
       }
 
-
-      .modal-body input[type="text"] {
+      .modal-body input {
           background-color: #555;
           color: #fff;
           border: none;
       }
-
 
       a {
           text-decoration: none;
@@ -90,7 +89,14 @@
 
 
 <div class="container">
-  <h2 class="mt-4">User Data</h2>
+  <h2 class="mt-4">
+    <a href="./workspaces">
+        <span class="material-symbols-outlined">
+          arrow_back
+        </span>
+        User Data
+    </a>
+  </h2>
   <div class="col-md-6 center">
     <form action="update-user" method="post">
       <div class="mb-3">
