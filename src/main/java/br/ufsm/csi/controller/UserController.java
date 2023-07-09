@@ -66,16 +66,12 @@ class UpdateUser extends HttpServlet {
 
             if (password.equals(confirmPassword)) {
                 if(user.getPassword().equals(password)) {
-                    if (name != null) {
-                        user.setName(name);
-                    }
-                    if (newPassword != null) {
+                    user.setName(name);
+                    if (newPassword != "") {
                         user.setPassword(newPassword);
                     }
-                    if (email != null) {
-                        if (new UserService().canUseMail(email)) {
-                            user.setEmail(email);
-                        }
+                    if (new UserService().canUseMail(email)) {
+                        user.setEmail(email);
                     }
                     new UserService().update(user);
                 }
