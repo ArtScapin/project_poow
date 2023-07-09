@@ -16,6 +16,25 @@
       align-items: center;
       justify-content: center;
     }
+
+
+    input[type="text"] {
+      background-color: #555 !important;
+      color: #fff !important;
+      border: none !important;
+    }
+
+    input[type="email"] {
+      background-color: #555 !important;
+      color: #fff !important;
+      border: none !important;
+    }
+
+    input[type="password"] {
+      background-color: #555 !important;
+      color: #fff !important;
+      border: none !important;
+    }
   </style>
 </head>
 <body>

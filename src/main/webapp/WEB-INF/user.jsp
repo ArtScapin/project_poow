@@ -50,10 +50,22 @@
           transform: translateY(-50%);
       }
 
-      .modal-body input {
-          background-color: #555;
-          color: #fff;
-          border: none;
+      input[type="text"] {
+        background-color: #555 !important;
+        color: #fff !important;
+        border: none !important;
+      }
+
+      input[type="email"] {
+        background-color: #555 !important;
+        color: #fff !important;
+        border: none !important;
+      }
+
+      input[type="password"] {
+        background-color: #555 !important;
+        color: #fff !important;
+        border: none !important;
       }
 
       a {
