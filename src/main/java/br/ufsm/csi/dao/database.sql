@@ -28,9 +28,9 @@ CREATE TABLE lists
     FOREIGN KEY (id_workspace) REFERENCES workspaces(id)
 );
 
--- Table: public.itens
+-- Table: public.items
 
-CREATE TABLE itens
+CREATE TABLE items
 (
     id SERIAL NOT NULL PRIMARY KEY,
     name varchar(250),

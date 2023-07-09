@@ -1,7 +1,9 @@
 package br.ufsm.csi.controller;
 
+import br.ufsm.csi.dao.ItemDAO;
 import br.ufsm.csi.dao.ListDAO;
 import br.ufsm.csi.dao.WorkspaceDAO;
+import br.ufsm.csi.model.Item;
 import br.ufsm.csi.model.List;
 import br.ufsm.csi.model.User;
 import br.ufsm.csi.model.Workspace;
@@ -41,6 +43,7 @@ class UserPage extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = new UserService().getUser(req.getCookies());
+
         if(user != null) {
             req.setAttribute("user", user);
             RequestDispatcher dispatcher;
@@ -76,7 +79,6 @@ class ListsPage extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = new UserService().getUser(req.getCookies());
-        System.out.println("ok");
 
         if(user != null){
             req.setAttribute("user", user);
@@ -86,6 +88,28 @@ class ListsPage extends HttpServlet {
             req.setAttribute("lists", lists);
             RequestDispatcher dispatcher;
             dispatcher = req.getRequestDispatcher("/WEB-INF/list.jsp");
+            dispatcher.forward(req, resp);
+        } else {
+            resp.sendRedirect("./");
+        }
+    }
+}
+@WebServlet("/item")
+class ItemsPage extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = new UserService().getUser(req.getCookies());
+
+        if(user != null){
+            req.setAttribute("user", user);
+            Workspace workspace = new WorkspaceDAO().getWorkspace(Integer.parseInt(req.getParameter("workspace")), user);
+            List list = new ListDAO().getList(Integer.parseInt(req.getParameter("list")), workspace);
+            ArrayList<Item> items = new ItemDAO().getItems(list);
+            req.setAttribute("workspace", workspace);
+            req.setAttribute("list", list);
+            req.setAttribute("items", items);
+            RequestDispatcher dispatcher;
+            dispatcher = req.getRequestDispatcher("/WEB-INF/item.jsp");
             dispatcher.forward(req, resp);
         } else {
             resp.sendRedirect("./");

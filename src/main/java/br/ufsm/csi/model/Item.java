@@ -1,12 +1,20 @@
 package br.ufsm.csi.model;
 
-import java.util.List;
 
 public class Item {
     private int id;
     private String name;
     private Boolean status;
     private List list;
+
+    public Item() {
+    }
+
+    public Item(String name,List list) {
+        this.name = name;
+        this.status = false;
+        this.list = list;
+    }
 
     public Item(int id, String name, Boolean status, List list) {
         this.id = id;

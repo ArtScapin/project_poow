@@ -26,13 +26,13 @@
           color: #fff;
       }
 
-      .workspace-list {
+      .list-list {
           list-style: none;
           padding: 0;
           text-align: center;
       }
 
-      .workspace-list li {
+      .list-list li {
           margin: 10px;
           background-color: #333;
           padding: 10px;
@@ -40,11 +40,11 @@
           position: relative;
       }
 
-      .workspace-list li:hover {
+      .list-list li:hover {
           background-color: #555;
       }
 
-      .workspace-list li::after {
+      .list-list li::after {
           content: '\f054';
           font-family: 'Font Awesome 5 Free';
           font-weight: 900;
@@ -54,7 +54,7 @@
           transform: translateY(-50%);
       }
 
-      .add-workspace-button {
+      .add-list-button {
           float: right;
       }
 
@@ -99,7 +99,7 @@
             <i class="fas fa-user-circle fa-lg"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+            <li><a class="dropdown-item" href="./user">Edit Profile</a></li>
             <li><a class="dropdown-item" href="./logout-user">Logout</a></li>
           </ul>
         </li>
@@ -110,23 +110,23 @@
 
 <div class="container">
   <div class="col-md-12">
-    <button class="btn btn-primary add-workspace-button" data-bs-toggle="modal" data-bs-target="#workspaceModal"><i class="fas fa-plus"></i></button>
-    <h2 class="mt-4">Workspace</h2>
+    <button class="btn btn-primary add-list-button" data-bs-toggle="modal" data-bs-target="#listModal"><i class="fas fa-plus"></i></button>
+    <h2 class="mt-4">Workspace ${workspace.name}</h2>
     <h4 class="mt-4">My Lists</h4>
-    <ul class="workspace-list">
+    <ul class="list-list">
       <c:forEach var="list" items="${lists}">
-        <a href="list?task=${list.id}"><li>List ${list.name}</li></a>
+        <a href="item?workspace=${workspace.id}&list=${list.id}"><li>List ${list.name}</li></a>
       </c:forEach>
     </ul>
   </div>
 </div>
 
-<!-- Workspace Modal -->
-<div class="modal fade" id="workspaceModal" tabindex="-1" aria-labelledby="workspaceModalLabel" aria-hidden="true">
+<!-- List Modal -->
+<div class="modal fade" id="listModal" tabindex="-1" aria-labelledby="listModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="workspaceModalLabel">Create Workspace</h5>
+        <h5 class="modal-title" id="listModalLabel">Create List</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
