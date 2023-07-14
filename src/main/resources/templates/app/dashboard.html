@@ -1,0 +1,135 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Dashboard - Dark Theme</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+  <style>
+    body {
+      background-color: #222;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background-color: #333;
+    }
+
+    .navbar-brand {
+      color: #fff;
+    }
+
+    .navbar-text {
+      color: #fff;
+    }
+
+    .card {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .chart-container {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <span class="navbar-brand">TODO List</span>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/workspaces">Workspaces</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-collapse justify-content-end">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="navbar-text" th:text="${user.getName()}"></span>
+            <i class="fas fa-user-circle fa-lg"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="./user">Edit Profile</a></li>
+            <li><a class="dropdown-item" href="./logout-user">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <h3>Workspaces</h3>
+        <p class="display-4" th:text="${totalWorkspaces}"></p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <h3>Lists</h3>
+        <p class="display-4" th:text="${totalLists}"></p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <h3>Items</h3>
+        <p class="display-4" th:text="${totalItems}"></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <h3>My Progress</h3>
+        <div class="chart-container">
+          <span id="completed" th:value="${completedItems}"></span>
+          <span id="inProgress" th:value="${inProgressItems}"></span>
+          <canvas id="pieChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var ctx = document.getElementById('pieChart').getContext('2d');
+  var completed = parseInt(document.getElementById("completed").getAttribute('value'));
+  var inProgress = parseInt(document.getElementById("inProgress").getAttribute('value'));
+  var pieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ['In Progress','Completed'],
+      datasets: [{
+        data: [inProgress, completed],
+        backgroundColor: ['#dc3545', '#28a745'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
